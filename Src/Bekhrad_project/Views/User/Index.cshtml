@@ -1,0 +1,290 @@
+﻿@model IEnumerable<Bekhrad_project.Models.MyModel.UserInformation>
+@using Kendo.Mvc.UI
+
+@{
+    ViewBag.Title = "List Of User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>List Of User</h2>
+
+<button id="btnNewUser" class="btn btn-success">AddUser</button>
+
+
+@(Html.Kendo().Grid<Bekhrad_project.Models.MyModel.UserInformation>()
+    .Name("grid")
+    .AutoBind(true)
+    .Columns(columns =>
+    {
+        columns.Select().Width(31).HtmlAttributes(new { @class="checkbox-align"}).HeaderHtmlAttributes(new { @class = "checkbox-align" });
+        columns.Bound(p => p.name).Width(190); ;
+        columns.Bound(p => p.family).Width(190);
+        columns.Bound(p => p.age).Width(100);
+        columns.Command(command => { command.Edit().UpdateText("s"); command.Destroy(); }).Width(200);
+
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search();
+        toolbar.Create();
+    })
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .ColumnMenu(col=>col.Filterable(true))
+    .Height(700)
+    .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+    .Sortable()
+    .Search(s =>
+    {
+        s.Field(o => o.name, "contains");
+        s.Field(o => o.family, "contains");
+        s.Field(o => o.email, "contains");
+        s.Field(o => o.age, "contains");
+    })
+    .Navigatable()
+    .Resizable(r=>r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Groupable(g=>g.ShowFooter(false))
+    .Filterable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(true)
+        .PageSize(20)
+        .AutoSync(true)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+        {
+            model.Id(p => p.userid);
+            model.Field(p => p.name).Editable(false);
+            model.Field(p => p.family).Editable(false);
+            model.Field(p => p.age).Editable(false);
+            model.Field(p => p.email).Editable(false);
+            //model.Field(p => p.email).DefaultValue(new CategoryViewModel() { CategoryID= 8, CategoryName="Seafood"});
+            //model.Field(p => p.Country).DefaultValue(new CountryViewModel() { CountryNameLong="Bulgaria", CountryNameShort="bg"});
+        })
+        .Create(update => update.Action("EditingPopup_Create", "Grid"))
+        .Read(read => read.Action("getAll", "user"))
+        .Update(update => update.Action("edit", "user"))
+        .Destroy(update => update.Action("EditingPopup_Destroy", "Grid"))
+    )
+)
+
+
+
+@*<table class="table" id="grid">
+    <tr>
+        <th>
+
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.family)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.family)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                <a id="editUser" class="btn btn-sm btn-warning" onclick="editGroup(@item.userid)">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a id="detailUser" class="btn btn-sm btn-dark" onclick="detailGroup(@item.userid)">
+                    <i class="k-i-trash"></i>
+                </a>
+                <a id="deleteUser" class="" onclick="deleteGroup(@item.userid)">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                </a>
+
+            </td>
+        </tr>
+    }*@
+</table>
+<div class="" id="windowEdit" />
+<div class="" id="window" />
+<div class="" id="windowDetail" />
+<div class="" id="windowDelete" />
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+        function onPdfExport(e) {
+            const width = e.sender.wrapper.width();
+            e.sender.wrapperClone.width(width);
+            e.sender.wrapperClone.addClass('k-clone');
+        }
+
+        function onDataBound(e) {
+            var grid = this;
+            grid.table.find("tr").each(function () {
+                var dataItem = grid.dataItem(this);
+                var themeColor = dataItem.Discontinued ? 'success' : 'error';
+                var text = dataItem.Discontinued ? 'available' : 'not available';
+
+                $(this).find('script').each(function () {
+                    eval($(this).html());
+                });
+
+                $(this).find(".badgeTemplate").kendoBadge({
+                    themeColor: themeColor,
+                    text: text,
+                });
+
+
+                kendo.bind($(this), dataItem);
+            });
+        }
+
+        function returnFalse() {
+            return false;
+        }
+
+
+
+
+        $("#btnNewUser").click(function () {
+            var myWindow = $("#window"),
+                undo = $("#btnNewUser");
+
+            function onClose() {
+                undo.fadeIn();
+            }
+            myWindow.kendoWindow({
+                width: "615px",
+                title: "Create New User",
+                content: "/user/Create",
+                actions: [
+                    "Pin",
+                    "Minimize",
+                    "Maximize",
+                    "Close"
+                ],
+                close: onClose
+            }).data("kendoWindow").center().open();
+
+            undo.click(function () {
+                myWindow.data("kendoWindow").open();
+                undo.fadeOut();
+            });
+        });
+
+
+        //edit
+        function editGroup(id) {
+            var myWindow = $("#windowEdit"),
+                undo = $("#editUser");
+
+            function onClose() {
+                undo.fadeIn();
+            }
+            myWindow.kendoWindow({
+                width: "615px",
+                title: "Edit User",
+                content: "user/edit/" + id,
+                actions: [
+                    "Pin",
+                    "Minimize",
+                    "Maximize",
+                    "Close"
+                ],
+                close: onClose
+            }).data("kendoWindow").center().open();
+
+            undo.click(function () {
+                myWindow.data("kendoWindow").open();
+                undo.fadeOut();
+            });
+        }
+
+        //detail
+        function detailGroup(id) {
+            var myWindow = $("#windowDetail"),
+                undo = $("#detailUser");
+
+            function onClose() {
+                undo.fadeIn();
+            }
+            myWindow.kendoWindow({
+                width: "615px",
+                title: "detail User",
+                content: "user/Details/" + id,
+                actions: [
+                    "Pin",
+                    "Minimize",
+                    "Maximize",
+                    "Close"
+                ],
+                close: onClose
+            }).data("kendoWindow").center().open();
+
+            undo.click(function () {
+                myWindow.data("kendoWindow").open();
+                undo.fadeOut();
+            });
+        }
+        //delete
+        function deleteGroup(id) {
+            var myWindow = $("#windowDelete"),
+                undo = $("#deleteUser");
+
+            function onClose() {
+                undo.fadeIn();
+            }
+            myWindow.kendoWindow({
+                width: "515px",
+                title: "Delete User",
+                content: "user/delete/" + id,
+                actions: [
+                    "Pin",
+                    "Minimize",
+                    "Maximize",
+                    "Close"
+                ],
+                close: onClose
+            }).data("kendoWindow").center().open();
+
+            undo.click(function () {
+                myWindow.data("kendoWindow").open();
+                undo.fadeOut();
+            });
+        }
+
+    </script>
+
+}

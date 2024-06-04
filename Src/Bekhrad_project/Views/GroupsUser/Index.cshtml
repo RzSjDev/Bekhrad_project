@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Bekhrad_project.Models.MyModel.GroupUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.groupname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creategrouptime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.groupname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creategrouptime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.groupid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.groupid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.groupid })
+        </td>
+    </tr>
+}
+
+</table>

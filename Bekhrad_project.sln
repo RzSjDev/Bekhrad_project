@@ -3,7 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bekhrad_project", "Bekhrad_project\Bekhrad_project.csproj", "{5625C9E0-67E5-4E99-BAE1-5134278255B2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{26B77EE2-AFD0-4DA0-861A-FCCA94A48D28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{73C8A8AA-74D7-426B-9C16-0ED478452DD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3F6C154F-131C-429B-A2A4-1FE16EC075D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bekhrad_project.Application", "Bekhrad_project.Application", "{84FF4CD1-C5FE-4A92-84DD-9074D5A80547}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bekhrad_project.Common", "Bekhrad_project.Common", "{3F2E8C07-0CAF-4BB7-92B0-0070699EEB23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bekhrad_project.Domain", "Bekhrad_project.Domain", "{E7B4F730-676F-40B4-8B81-51834FF2F9A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bekhrad_project.Infrastructure", "Bekhrad_project.Infrastructure", "{4ECC410E-D074-418F-89D9-B23983B7A249}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bekhrad_project.Presistance", "Bekhrad_project.Presistance", "{4410DA5D-E2AA-4CBB-8FF1-56A6954F6964}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoint.WebSite", "EndPoint.WebSite", "{B3577BC6-4858-41DF-89B9-AB52E124C615}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bekhrad_project", "Src\Bekhrad_project\Bekhrad_project.csproj", "{9387ACF4-E259-4B53-9B3A-B587179D4E7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bekhrad_project.Presistance", "Src\Bekhrad_project.Presistance\Bekhrad_project.Presistance.csproj", "{CECC0D2C-BEA6-4BD2-8266-26287D7C044A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bekhrad_project.Infrastructure", "Src\Bekhrad_project.Infrastructure\Bekhrad_project.Infrastructure.csproj", "{5D07345C-F8E7-42F9-AC23-AA0C57A8C48A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bekhrad_project.Domain", "Src\Bekhrad_project.Domain\Bekhrad_project.Domain.csproj", "{048BB299-4B9D-457A-95AD-76B48547C5E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bekhrad_project.Common", "Src\Bekhrad_project.Common\Bekhrad_project.Common.csproj", "{2B2E5C5C-7F6F-473E-B163-97845E1D26D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +37,42 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5625C9E0-67E5-4E99-BAE1-5134278255B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5625C9E0-67E5-4E99-BAE1-5134278255B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5625C9E0-67E5-4E99-BAE1-5134278255B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5625C9E0-67E5-4E99-BAE1-5134278255B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9387ACF4-E259-4B53-9B3A-B587179D4E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9387ACF4-E259-4B53-9B3A-B587179D4E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9387ACF4-E259-4B53-9B3A-B587179D4E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9387ACF4-E259-4B53-9B3A-B587179D4E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CECC0D2C-BEA6-4BD2-8266-26287D7C044A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECC0D2C-BEA6-4BD2-8266-26287D7C044A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECC0D2C-BEA6-4BD2-8266-26287D7C044A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECC0D2C-BEA6-4BD2-8266-26287D7C044A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D07345C-F8E7-42F9-AC23-AA0C57A8C48A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D07345C-F8E7-42F9-AC23-AA0C57A8C48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D07345C-F8E7-42F9-AC23-AA0C57A8C48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D07345C-F8E7-42F9-AC23-AA0C57A8C48A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048BB299-4B9D-457A-95AD-76B48547C5E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048BB299-4B9D-457A-95AD-76B48547C5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048BB299-4B9D-457A-95AD-76B48547C5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048BB299-4B9D-457A-95AD-76B48547C5E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B2E5C5C-7F6F-473E-B163-97845E1D26D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B2E5C5C-7F6F-473E-B163-97845E1D26D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B2E5C5C-7F6F-473E-B163-97845E1D26D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B2E5C5C-7F6F-473E-B163-97845E1D26D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84FF4CD1-C5FE-4A92-84DD-9074D5A80547} = {73C8A8AA-74D7-426B-9C16-0ED478452DD1}
+		{3F2E8C07-0CAF-4BB7-92B0-0070699EEB23} = {73C8A8AA-74D7-426B-9C16-0ED478452DD1}
+		{E7B4F730-676F-40B4-8B81-51834FF2F9A1} = {73C8A8AA-74D7-426B-9C16-0ED478452DD1}
+		{4ECC410E-D074-418F-89D9-B23983B7A249} = {73C8A8AA-74D7-426B-9C16-0ED478452DD1}
+		{4410DA5D-E2AA-4CBB-8FF1-56A6954F6964} = {73C8A8AA-74D7-426B-9C16-0ED478452DD1}
+		{B3577BC6-4858-41DF-89B9-AB52E124C615} = {73C8A8AA-74D7-426B-9C16-0ED478452DD1}
+		{9387ACF4-E259-4B53-9B3A-B587179D4E7E} = {B3577BC6-4858-41DF-89B9-AB52E124C615}
+		{CECC0D2C-BEA6-4BD2-8266-26287D7C044A} = {4410DA5D-E2AA-4CBB-8FF1-56A6954F6964}
+		{5D07345C-F8E7-42F9-AC23-AA0C57A8C48A} = {4ECC410E-D074-418F-89D9-B23983B7A249}
+		{048BB299-4B9D-457A-95AD-76B48547C5E5} = {E7B4F730-676F-40B4-8B81-51834FF2F9A1}
+		{2B2E5C5C-7F6F-473E-B163-97845E1D26D6} = {3F2E8C07-0CAF-4BB7-92B0-0070699EEB23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E85BB7D-5712-4459-8D2F-6C850F72A662}

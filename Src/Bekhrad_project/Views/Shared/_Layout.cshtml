@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+
+<html dir="auto">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bekhrad</title>
+    <link rel="icon" type="image/png" href="~/Content/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+
+    <link href="~/kendo/css/kendo.common-material.min.css" rel="stylesheet" />
+    <link href="~/kendo/css/kendo.default-ocean-blue.min.css" rel="stylesheet" />
+    <link href="~/kendo/css/kendo.rtl.min.css" rel="stylesheet" />
+    @if (System.Globalization.CultureInfo.CurrentCulture.Name.Contains("fa"))
+    {
+        <link href="/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+    }
+    else
+    {
+        @Styles.Render("~/Content/css")
+    }
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="bg-image" style="background-image: url('/Content/images/bg-01.jpg'); background-size: cover;">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-opacity-50 bg-danger">
+        <div class="container">
+            @Html.ActionLink(Bekhrad_project.Domain.Resorce.Resource.Application_name, "Index", "user", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav me-4 flex-grow-1" id="menu">
+                    <li>
+                        @Bekhrad_project.Domain.Resorce.Resource.Language
+                        <ul>
+                            <li> @Html.ActionLink("English", "Change", "Language", new { Language = "en" }, null)</li>
+                            <li>@Html.ActionLink("Persian", "Change", "Language", new { Language = "fa" }, null)</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink(Bekhrad_project.Domain.Resorce.Resource.AddGroup, "Index", "GroupsUser", new { area = "" }, new { @class = "nav-link" })</li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/kendo/js/kendo.web.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <script src="~/kendo/js/kendo.all.min.js"></script>
+    <script src="~/kendo/js/kendo.aspnetmvc.min.js"></script>
+    <script src="~/kendo/js/kendo.messages.fa-IR.min.js"></script>
+    <script src="~/kendo/js/kendo.culture.fa.min.js"></script>
+    <script src="~/kendo/js/kendo.culture.fa-IR.min.js"></script>
+    <script src="~/Content/vendor/animsition/js/animsition.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/select2/select2.min.js"></script>
+    <script src="~/Content/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Content/vendor/countdowntime/countdowntime.js"></script>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Bekhrad</p>
+        </footer>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $("#menu").kendoMenu();
+        });
+    </script>
+</body>
+</html>
+

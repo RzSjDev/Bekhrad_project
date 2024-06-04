@@ -1,0 +1,100 @@
+﻿@model Bekhrad_project.Models.MyModel.UserInformation
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal" id="window">
+    <h4>Please Enter Your Information</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.family, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.family, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.family, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.groupid, "GroupId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("GroupId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.groupid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="container-login100-form-btn mt-4">
+        <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button type="submit" class="login100-form-btn">
+                Create
+            </button>
+        </div>
+    </div>
+
+</div>
+}
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            var myWindow = $("#window"),
+                undo = $("#undo");
+
+            undo.click(function () {
+                myWindow.data("kendoWindow").open();
+                undo.fadeOut();
+            });
+
+            function onClose() {
+                undo.fadeIn();
+            }
+
+            myWindow.kendoWindow({
+                width: "600px",
+                title: "About Alvar Aalto",
+                visible: false,
+                actions: [
+                    "Pin",
+                    "Close"
+                ],
+                close: onClose
+            }).data("kendoWindow").center().open();
+        });
+
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
